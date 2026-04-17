@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    
+</head>
+<body>
+     <!-- 로그인 -->
+     <section class="logform" id="login">
+        <h3>로그인</h3>
+        <form id="loginForm">
+            <label for="login-username">Username:</label>
+            <input type="text" id="login-username" name="login-username" required>
+            <br>
+            <label for="login-password">Password:</label>
+            <input type="password" id="login-password" name="login-password" required>
+            <br>
+            <button type="button" onclick="submitLogin()">Login</button>
+        </form>
+
+        <div class="cursor"></div>
+<script>
+    function submitSignup() {
+        const username = document.getElementById('username').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        if (username && email && password) {
+            alert(`Signup Successful!\nUsername: ${username}\nEmail: ${email}`);
+        } else {
+            alert('Please fill out all the fields!');
+        }
+    }
+
+    function submitLogin() {
+        const username = document.getElementById('login-username').value;
+        const password = document.getElementById('login-password').value;
+
+        if (username && password) {
+            alert(`Login Successful!\nWelcome, ${username}`);
+        } else {
+            alert('Please enter both username and password!');
+        }
+    }
+</script>
+</body>
+</html>

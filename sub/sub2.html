@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program</title>
+    <link rel="shortcut icon"  type="image/x-icon"  href="../favicon.ico">
+<link rel="apple-touch-icon-precomposed" href="../app_icon.png">
+<link rel="apple-touch-startup-image" href="../startup.png">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="../css/aos.css">
+<link rel="stylesheet" href="../css/common.css">
+<link rel="stylesheet" href="../css/sub2.css">
+</head>
+<body>
+
+    <div id="skipNav">
+        <a href="#content">본문바로가기</a>
+        <a href="#gnb">네비게이션바로가기</a>
+    </div>
+
+    <div id="wrap">
+        <div class="videoBox">
+                <!-- <video autoplay loop muted id="videoBG"></video> -->
+                <img src="../images/sub2_big.jpg" id="imgBG" alt="Coach background image">
+                <div class="scroll-indicator">
+                    <a class="down" href="#">
+                        <span>SCROLL DOWN</span>
+                        <div class="scrolldown-btn"></div>
+                    </a>
+                </div>
+        </div>
+        <header id="headerArea">
+            <div class="headerInner">
+                <h1 class="logo">
+                  <a href="../index.html">
+                      PRE Crossfit
+                  </a>
+                </h1>
+                  <a href="#" class="menuOpen"><span class="hidden">메뉴열기</span><i class="fa fa-bars" aria-hidden="true"></i></a>
+                  <div class="box"></div>
+                <nav id="gnb">
+                     <h2 class="hidden">네비게이션영역</h2> 
+                     <ul>
+                          <li><h3><a href="./sub1.html?num=1">About</a></h3></li>
+                          <li><h3><a href="./sub2.html?num=2">Program</a></h3></li>
+                          <li><h3><a href="./sub3.html?num=3">Multimedia</a></h3></li>
+                          <li><h3><a href="./sub4.html?num=4">Membership</a></h3></li>
+                          <li><h3><a href="./sub5.html?num=5">Contact</a></h3></li>
+                          <!-- <li class="signlog">
+                              <h3><a href="../Login.html" onclick="navigateTo('login')">로그인</a></h3>
+                          </li>
+                          <li class="signlog"><h3><a href="../Signup.html" onclick="navigateTo('signup')">회원가입</a></h3></li> -->
+                     </ul>
+                     <a href="#" class="close"><span class="hidden">메뉴닫기</span><i class="fa-solid fa-xmark"></i></a>
+                </nav>
+              </div>
+        </header>
+
+    <article id="content">
+        <h2>PROGRAM</h2>
+        <div class="program_container" >
+            <div class="workout-day" data-aos="zoom-in-up">
+                <h3>Workout Of the Day</h3>
+                <p><strong>24.12.10 WOD</strong></p>
+                <p>Deadlift 1RM</p>
+                <p>AMRAP 16</p>
+                <p>I GO YOU GO</p>
+                <p>40 DU</p>
+                <p>10 PUSH UP</p>
+            </div>
+    
+            <div class="weekly-workout" data-aos="zoom-in-up">
+                <h3>Weekly Workout</h3>
+                <p>한 주간의 운동 스케줄이며 매주 월요일 새롭게 업로드 됩니다.</p>
+                <div class="calendar_box">
+                    <ul class="calendar" id="calendar">
+                        
+                        <li class="day">Mon</li>
+                        <li class="day">Tue</li>
+                        <li class="day">Wed</li>
+                        <li class="day">Thu</li>
+                        <li class="day">Fri</li>
+                        <li class="day">Sat</li>
+                        <li class="day">Sun</li>
+                    </ul>
+                </div>
+                <button class="add-btn" onclick="addSchedule()">Add Schedule</button>
+            </div>
+        </div>
+        <div class="hero_container">
+            <h3>Hero WOD</h3>
+            <ul>
+                <li data-aos="fade-down-right" data-aos-duration="1000">
+                    <h4>BARBARA</h4>
+                    <strong>5 ROUNDS 3 MIN REST</strong>
+                    <p>20 Pull-Ups</p>
+                    <p>30 Push-Ups</p>
+                    <p>40 Sit-Ups</p>
+                    <p>50 Squats</p>
+                </li>
+                <li data-aos="flip-up" data-aos-duration="1000">
+                   <h4>DAE HAN</h4>
+                   <strong>3 ROUNDS for TIME</strong>
+                   <p>800m Run 45lb</p>
+                   <p>3 Rope Climbs 15ft</p>
+                   <p>12 Thrusters</p>
+                   <strong>Rx 135lbs</strong>
+                </li>
+                <li data-aos="flip-up" data-aos-duration="1000">
+                    <h4>AMANDA</h4>
+                    <strong>9-7-5</strong>
+                    <p>Muscle-Ups</p>
+                    <p>Snatch</p>
+                </li>
+                <li data-aos="fade-down-left" data-aos-duration="1000">
+                    <h4>ELIZABETH</h4>
+                    <strong>21-15-9</strong>
+                    <p>Cleans</p>
+                    <p>Ring dips</p>
+                    <strong>Rx 135lbs</strong>
+                </li>
+                <li data-aos="fade-up-right" data-aos-duration="1500">
+                    <h4>JACK</h4>
+                    <strong>20 MIN AMRAP</strong>
+                    <p>10 Push Press</p>
+                    <p>10 Kettlebell Swings</p>
+                    <p>10 Box Jumps</p>
+                </li>
+                <li data-aos="flip-down" data-aos-duration="1500">
+                    <h4>CINDY</h4>
+                    <strong>AMRAP IN 20 MIN</strong>
+                    <p>5 Pull-Ups</p>
+                    <P>10 Push-Ups</P>
+                    <P>15 Squats</P>
+                </li>
+                <li data-aos="flip-down" data-aos-duration="1500">
+                    <h4>JARED</h4>
+                    <strong>4 ROUNDS for TIME</strong>
+                    <p>800m Run</p>
+                    <p>40 Pull-Ups</p>
+                    <p>70 Push-Ups</p>
+                </li>
+                <li data-aos="fade-up-left" data-aos-duration="1500">
+                    <h4>JACKIE</h4>
+                    <strong>AFAP</strong>
+                    <p>1000m Row</p>
+                    <p>50 Thrusters</p>
+                    <p>30 Pull-Ups</p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="schedule-container">
+            <h3 class="schedule-header">Our Box Timeline</h3>
+            <table class="schedule-table">
+                <thead>
+                    <tr>
+                        <th>MON</th>
+                        <th>TUE</th>
+                        <th>WED</th>
+                        <th>THU</th>
+                        <th>FRI</th>
+                        <th>SAT</th>
+                        <th>SUN</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="highlight">09:00</td>
+                        <td class="highlight">09:00</td>
+                        <td class="highlight">09:00</td>
+                        <td class="highlight">09:00</td>
+                        <td class="highlight">09:00</td>
+                        <td rowspan="4" class="highlight">10:00 ~ 14:30</td>
+                        <td rowspan="4" class="highlight">10:00 ~ 14:00</td>
+                    </tr>
+                    <tr>
+                        <td class="highlight">10:30</td>
+                        <td class="highlight">10:30</td>
+                        <td class="highlight">10:30</td>
+                        <td class="highlight">10:30</td>
+                        <td class="highlight">10:30</td>
+                        
+                    </tr>
+                    <tr>
+                        <td colspan="5" class="highlight"><br> 12:00 ~ 17:30 &nbsp;&nbsp; OPEN GYM</td>
+                    </tr>
+                    <tr>
+                        <td colspan="5" class="highlight"><br> 14:00 ~ 16:00 &nbsp;&nbsp;COACH'S WOD</td>
+                    </tr>
+                  
+                    <tr>
+                        <td class="time-label">18:00</td>
+                        <td class="time-label">18:00</td>
+                        <td class="time-label">18:00</td>
+                        <td class="time-label">18:00</td>
+                        <td class="time-label">18:00</td>
+                        <td colspan="6" rowspan="3"></td>
+                    </tr>
+                    <tr>
+                        <td class="time-label">19:30</td>
+                        <td class="time-label">19:30</td>
+                        <td class="time-label">19:30</td>
+                        <td class="time-label">19:30</td>
+                        <td class="time-label">19:30</td>
+                        <!-- <td colspan="6"></td> -->
+                    </tr>
+                    <tr>
+                        <td class="time-label">21:00</td>
+                        <td class="time-label">21:00</td>
+                        <td class="time-label">21:00</td>
+                        <td class="time-label">21:00</td>
+                        <td class="time-label">21:00</td>
+                        <!-- <td colspan="6"></td> -->
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+
+    </article>
+
+<footer id="footerArea">
+            <div class="topMove">
+                <div> <img src="../topbutton.png" alt=""></div>
+            </div>
+            <div>
+                <img src="../images/footer/footer_logo.png" alt="로고">
+                <div>
+                    <p>Address: 서울특별시 양천구 지양로5길 5 초이스빌딩 지하1층</p>
+                    <p>CopyRight: PRE Crossfit. All rights Reserve</p>
+                   
+                </div>
+                <ul>
+                    <li><a href="https://www.instagram.com/crossfit_pre/"><i class="fa-brands fa-square-instagram"></i></a></li>
+                    <li><a href="#"><i class="fa-brands fa-square-youtube"></i></a></li>
+                    <li><a href="https://cafe.naver.com/browncav6u"><i class="fa-brands fa-square-x-twitter"></i></a></li>
+                </ul>
+            </div>	
+            
+            
+            
+        </footer>
+    </div>
+<script src="../js/jquery-1.12.4.min.js"></script>
+<script src="../js/jquery-migrate-1.4.1.min.js"></script>
+<script src="../js/swiper.min.js"></script>
+<script src="../js/common.js"></script>
+<script src="../js/sub_img_back.js"></script>
+<script src="../js/ham.js"></script>
+<script src="../js/aos.js"></script>
+<script>
+    AOS.init({
+      easing: 'ease-in-out-sine'
+    });
+</script>
+<script>
+    function addSchedule() {
+        const calendar = document.getElementById('calendar');
+        const newDay = document.createElement('li');
+        newDay.className = 'day';
+        newDay.contentEditable = true;
+        newDay.innerText = 'New Schedule';
+
+        const deleteBtn = document.createElement('button');
+        deleteBtn.innerText = 'Delete';
+        deleteBtn.style.display = 'block';
+        deleteBtn.style.marginTop = '5px';
+
+        deleteBtn.onclick = () => calendar.removeChild(newDay);
+
+        newDay.appendChild(deleteBtn);
+        calendar.appendChild(newDay);
+    }
+</script>
+
+</body>
+</html>
