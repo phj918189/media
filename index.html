@@ -26,17 +26,35 @@
    </div>
 
 <div id="wrap">
-	<div class="videoBox">
-		    <video autoplay loop muted id="videoBG"></video>
-			<img src="./images/coach.jpg" id="imgBG" alt="Coach background image">
-			<div class="scroll-indicator">
-				<a class="down" href="#">
-					<span>SCROLL DOWN</span>
-					<div class="scrolldown-btn"></div>
-				</a>
-			</div>
-	</div>
-	
+	<div class="videoBox hero">
+		<video autoplay loop muted playsinline id="videoBG"></video>
+		<img src="./images/coach.jpg" id="imgBG" alt="Coach background image">
+	  
+		<div class="hero-overlay"></div>
+	  
+		<div class="hero-content">
+		  <p class="hero-kicker">PRE CROSSFIT</p>
+		  <h2 class="hero-title">
+			Stronger Every Day
+		  </h2>
+		  <p class="hero-description">
+			기초부터 숙련자까지 함께 성장할 수 있는
+			크로스핏 박스 PRE CROSSFIT
+		  </p>
+	  
+		  <div class="hero-buttons">
+			<a href="./sub/sub1.html?num=1" class="hero-btn primary">About 보기</a>
+			<a href="./sub/sub4.html?num=4" class="hero-btn secondary">Membership 보기</a>
+		  </div>
+		</div>
+	  
+		<div class="scroll-indicator">
+		  <a class="down" href="#content">
+			<span>SCROLL DOWN</span>
+			<div class="scrolldown-btn"></div>
+		  </a>
+		</div>
+	  </div>
 	<header id="headerArea">
 	  <div class="headerInner">
 		  <h1 class="logo">
@@ -72,26 +90,7 @@
 			<h3 data-aos="fade-up">About</h3>
 
 			<div class="box1">
-				<h4 data-aos="fade-right">Coach's speech</h4>
-				<div class="speech" data-aos="fade-right">
-					<p>안녕하세요. <br>
-						PRE CROSSFIT 코치 이영상입니다. 
-						
-						코치로서 어떤 동작, 기술을 가르칠 때  점점 더 발전하는 모습을 보면 누구보다  기쁘고 뿌듯함을 느낄 수 있고, 
-						그렇게 성장하는 회원들을 생각하면 ‘어떻게 하면 더 쉽게 알려 줄 수 있을까?’,  ‘어떻게 하면 더 재밌게 알려줄 수 
-						있을까’를 항상 고민합니다. 
-					</p>
-					<div data-aos="fade-left">
-						<img src="./images/sub1/coach_1.png" alt="" data-aos="fade-left">
-					</div>
-				</div>
-	
-				<ul class="license">
-					<li data-aos="fade-up"><img src="./images/sub1/img11.jpg" alt=""></li>
-					<li data-aos="fade-down"><img src="./images/sub1/img22.jpg" alt=""></li>
-					<li data-aos="fade-up"><img src="./images/sub1/img33.jpg" alt=""></li>
-					<li data-aos="fade-down"><img src="./images/sub1/img44.jpg" alt=""></li>
-				</ul>
+				<div id="about-root"></div>
 	
 				
 				<a href="./sub/sub1.html?num=1" class="moreBtn">Read more</a>
@@ -102,76 +101,7 @@
 		<section class="sec2">
 			<h3 data-aos="fade-up">Program</h3>
 			<div>
-				<ul>
-					<li>
-						<ul>
-							<li>
-								<strong>24. 12. 10 WOD</strong> <br>
-								<span>Deadlift 1RM</span> 
-								<p>AMRAP 16 <br>
-									I GO YOU GO <br>
-									40 DU <br>
-									10 PUSH UP <br>
-								</p>
-							</li>
-							<li>
-								<strong>Weightlifting</strong>
-								<dl>
-									<dt>Snatch DeadLift</dt>
-									<dd>445 3*3</dd>
-									
-									<dt>Snatch Balance</dt>
-									<dd>225</dd>
-
-									<dt>Clean and Jerk</dt>
-									<dd>245 1*10</dd>
-								</dl>
-							</li>
-						</ul>
-					</li>
-					<li  data-aos="fade-down-right">
-						<img src="./images/sub2/img11.jpg" alt="">
-				
-						
-						<span class="heroTxt">
-							For Time <br>
-							1 mile Run <br>
-							100 Pull-Ups <br>
-							200 Push-Ups <br>
-							300 Air Squats <br>
-							1 mile Run <br>
-						</span>
-					</li>
-					<li  data-aos="fade-down-left">
-						<img src="./images/sub2/img22.jpg" alt="">
-						<span class="heroTxt">
-							For Time <br>
-							150 WBS <br> 
-							(30/20 lb) <br>
-							Time Cap: 8/9min <br>
-						</span>
-					</li>
-					<li  data-aos="fade-up-right">
-						<img src="./images/sub2/img33.jpg" alt="">
-						<span class="heroTxt">
-							21-15-9 <br>
-							Reps For Time <br>
-							Thrusters <br>
-							(95/65 lb)<br>
-							Pull-Ups <br>
-						</span>
-					</li>
-					<li data-aos="fade-up-left">
-						<img src="./images/sub2/img44.jpg" alt="">
-						<span class="heroTxt">
-							AMRAP <br>
-							20 min <br>
-							2 Muscle-Ups <br>
-							4 HSPU <br>
-							8 AKS <br>
-						</span>
-					</li>
-				</ul>
+				<div id="programRenderRoot"></div>
 			</div>
 			<a href="./sub/sub2.html?num=2" class="moreBtn">Read more</a>
 		</section>
@@ -380,6 +310,11 @@
 <script src="./js/ham.js"></script>
 <script src="./js/prefixfree.min.js"></script>
 <script src="./js/audio.js"></script>
+<script src="./js/aboutData.js"></script>
+<script src="./js/aboutRender.js"></script>
+<script src="./js/programData.js"></script>
+<script src="./js/programRender.js"></script>
+<script src="./js/sectionActive.js"></script>
 
 <script>
 	$('.poptube').magnificPopup({

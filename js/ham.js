@@ -1,47 +1,84 @@
 
-
 $(document).ready(function() {
 
-  $(".menuOpen").click(function (e) {
-    e.preventDefault();
-    $('.box').animate({
-        opacity: 1
-    }, 500).show();
-    $("#gnb").animate({
-        right: 0,
-        opacity: 1
-    }, 500);
-});
-
-$(".close, .box").click(function (e) {
-    e.preventDefault();
-    $('.box').animate({
-        opacity: 0
-    }, 500).hide();
-    $("#gnb").animate({
-        right: '-100%',
-        opacity: 0
-    }, 500);
-});
-
-var current = 0; //1(소형테블릿이상) , 0(모바일)
-$(window).resize(function () { //웹브라우저 크기 조절시 반응하는 이벤트 메소드()
-    var screenSize = $(window).width();
-    if (screenSize > 768) { //소형테블릿 이상
+    $(".menuOpen").click(function (e) {
+      e.preventDefault();
+      $("body").css("overflow", "hidden");
+  
+      $('.box').show().animate({
+          opacity: 1
+      }, 500);
+  
+      $("#gnb").animate({
+          right: 0,
+          opacity: 1
+      }, 500);
+    });
+  
+    $(".close, .box").click(function (e) {
+      e.preventDefault();
+      $("body").css("overflow", "");
+  
+      $('.box').animate({
+          opacity: 0
+      }, 500, function () {
+          $(this).hide();
+      });
+  
+      $("#gnb").animate({
+          right: '-100%',
+          opacity: 0
+      }, 500);
+    });
+  
+    var current = 0;
+  
+    $(window).resize(function () {
+      var screenSize = $(window).width();
+  
+      if (screenSize > 768) {
         $("#gnb").css({
             right: 0,
             opacity: 1
         });
-        //   $("#gnb").height('auto');
+        $('.box').hide().css({ opacity: 0 });
+        $("body").css("overflow", "");
         current = 1;
-    }
-    if (current == 1 && screenSize <= 768) {
+      }
+  
+      if (current == 1 && screenSize <= 768) {
         $("#gnb").css({
             right: '-100%',
             opacity: 0
         });
-        // $("#gnb").height(documentHeight);
+        $('.box').hide().css({ opacity: 0 });
+        $("body").css("overflow", "");
         current = 0;
+      }
+    });
+  
+  });
+
+  $(window).on("scroll", function () {
+    if ($(window).scrollTop() > 40) {
+      $("#headerArea").addClass("scrolled");
+    } else {
+      $("#headerArea").removeClass("scrolled");
     }
-});
-});
+  });
+
+  $(window).trigger("scroll");
+
+
+//   const header = document.getElementById("headerArea");
+
+//   function handleHeaderScroll() {
+//     if (window.scrollY > 40) {
+//       header.classList.add("scrolled");
+//     } else {
+//       header.classList.remove("scrolled");
+//     }
+//   }
+
+//   window.addEventListener("scroll", handleHeaderScroll);
+//   handleHeaderScroll();

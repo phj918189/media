@@ -1,74 +1,127 @@
-var audio=document.getElementById('main_audio');
-var currnum = 1;  //현재 선택된 사운드 순서
-var ps=false; //false(stop), true(play)
-var track = ['All By Myself','MANIAC','운동하자','울끈불끈 사랑'];
-var tit = ['Defconn','Stray Kids','건이','Gwanna'];
+const tracks = [
+  { src: "./images/music/music1.mp3", title: "All By Myself", artist: "Defconn" },
+  { src: "./images/music/music2.mp3", title: "MANIAC", artist: "Stray Kids" },
+  { src: "./images/music/music3.mp3", title: "운동하자", artist: "건이" },
+  { src: "./images/music/music4.mp3", title: "울끈불끈 사랑", artist: "Gwanna" }
+];
 
-function changeSound(num){  // 1 2 3
-    $('.playerImg img').attr('src','./images/music/plates_'+num+'.png');
-    $('#main_audio').attr('src','./images/music/music'+num+'.mp3');
-    audio.play();
-    $('.playerImg img').addClass("current");
-    $('#controlPlay i').removeClass().addClass('fa-solid fa-stop');
+document.addEventListener("DOMContentLoaded", function () {
+  const audio = document.getElementById("main_audio");
+  const controlPrev = document.getElementById("controlPrev");
+  const controlPlay = document.getElementById("controlPlay");
+  const controlNext = document.getElementById("controlNext");
+  const controlPlayIcon = controlPlay ? controlPlay.querySelector("i") : null;
+  const playerImage = document.querySelector(".playerImg img");
+  const titleElement = document.querySelector(".playerWrap dt");
+  const artistElement = document.querySelector(".playerWrap dd");
+  const trackAnchors = Array.from(document.querySelectorAll(".playInfo li a"));
 
-    $('.playInfo li a').removeClass('curr');
-    $('.playInfo li:eq('+(num-1)+') a').addClass('curr');
-    currnum = num;
-    ps=true;
+  if (!audio || !controlPrev || !controlPlay || !controlNext || !controlPlayIcon) {
+    return;
+  }
 
-    $('.playerWrap dt').text(track[num-1]);
-    $('.playerWrap dd').text(tit[num-1]);
-    
-}
+  const state = {
+    isPlaying: false,
+    currentTrackIndex: 0
+  };
 
-$('#controlPlay').click(function(e){
-    e.preventDefault();
+  function updateUI() {
+    const currentTrack = tracks[state.currentTrackIndex];
 
-    if(ps==false){ //중지중이면
-        audio.play();
-        $('.playerImg img').addClass("current");
-        $('#controlPlay i').removeClass().addClass('fa-solid fa-stop');
-        ps=true;
-    }else{  //재생중이면
-        audio.pause();
-        $('.playerImg img').removeClass("current");
-        $('#controlPlay i').removeClass().addClass('fa-solid fa-play');
-        ps=false;
+    if (titleElement) {
+      titleElement.textContent = currentTrack.title;
     }
-});
 
+    if (artistElement) {
+      artistElement.textContent = currentTrack.artist;
+    }
 
-function np_play(){
-    $('.playerImg img').addClass("current");
+    if (playerImage) {
+      playerImage.src = "./images/music/plates_" + (state.currentTrackIndex + 1) + ".png";
+      playerImage.classList.toggle("current", state.isPlaying);
+    }
 
-    $('.playInfo li a').removeClass('curr');
-    $('.playInfo li:eq('+(currnum-1)+') a').addClass('curr');
+    controlPlayIcon.className = state.isPlaying ? "fa-solid fa-pause" : "fa-solid fa-play";
 
-    $('#controlPlay i').removeClass().addClass('fa-solid fa-stop');
-    ps=true;
+    trackAnchors.forEach(function (anchor, index) {
+      anchor.classList.toggle("curr", index === state.currentTrackIndex);
+    });
+  }
 
-    $('#main_audio').attr('src','./images/music/music'+currnum+'.mp3');
-    audio.play();
+  function playTrack(index) {
+    const total = tracks.length;
+    const normalizedIndex = ((index % total) + total) % total;
+    const selectedTrack = tracks[normalizedIndex];
 
-    $('.playerWrap dt').text(track[currnum-1]);
-    $('.playerWrap dd').text(tit[currnum-1]);
-}
+    state.currentTrackIndex = normalizedIndex;
+    audio.src = selectedTrack.src;
 
-$('#controlNext').click(function(e){  //다음버튼 클릭시
-    e.preventDefault();
+    updateUI();
 
-    currnum++; // 1 2 3 4
-    if(currnum==4)currnum=1;
-    $('.playerImg img').attr('src','./images/music/plates_'+currnum+'.png');
-    np_play(); //재생한다
-});
+    const playPromise = audio.play();
+    if (playPromise && typeof playPromise.catch === "function") {
+      playPromise.catch(function () {
+        state.isPlaying = false;
+        updateUI();
+      });
+    }
+  }
 
+  function togglePlayPause() {
+    if (state.isPlaying) {
+      audio.pause();
+      return;
+    }
 
-$('#controlPrev').click(function(e){ //이전버튼 클릭시
-    e.preventDefault();
+    const playPromise = audio.play();
+    if (playPromise && typeof playPromise.catch === "function") {
+      playPromise.catch(function () {
+        state.isPlaying = false;
+        updateUI();
+      });
+    }
+  }
 
-    currnum--; // 4 3 2 1
-    if(currnum==0)currnum=3;
-    $('.playerImg img').attr('src','./images/music/plates_'+currnum+'.png');
-    np_play();//재생한다
+  function playPrevTrack() {
+    playTrack(state.currentTrackIndex - 1);
+  }
+
+  function playNextTrack() {
+    playTrack(state.currentTrackIndex + 1);
+  }
+
+  controlPlay.addEventListener("click", function (event) {
+    event.preventDefault();
+    togglePlayPause();
+  });
+
+  controlPrev.addEventListener("click", function (event) {
+    event.preventDefault();
+    playPrevTrack();
+  });
+
+  controlNext.addEventListener("click", function (event) {
+    event.preventDefault();
+    playNextTrack();
+  });
+
+  audio.addEventListener("play", function () {
+    state.isPlaying = true;
+    updateUI();
+  });
+
+  audio.addEventListener("pause", function () {
+    state.isPlaying = false;
+    updateUI();
+  });
+
+  audio.addEventListener("ended", function () {
+    playNextTrack();
+  });
+
+  window.changeSound = function (num) {
+    playTrack(Number(num) - 1);
+  };
+
+  updateUI();
 });
