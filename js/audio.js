@@ -25,8 +25,8 @@ document.addEventListener("DOMContentLoaded", function () {
     currentTrackIndex: 0
   };
 
-  function updateUI() {
-    const currentTrack = tracks[state.currentTrackIndex];
+  function renderTrackInfo() {
+    const currentTrack = tracks[state.currentTrackIndex] || tracks[0];
 
     if (titleElement) {
       titleElement.textContent = currentTrack.title;
@@ -40,6 +40,12 @@ document.addEventListener("DOMContentLoaded", function () {
       playerImage.src = "./images/music/plates_" + (state.currentTrackIndex + 1) + ".png";
       playerImage.classList.toggle("current", state.isPlaying);
     }
+  }
+
+  function updateActiveTrack() {
+    if (!controlPlayIcon) {
+      return;
+    }
 
     controlPlayIcon.className = state.isPlaying ? "fa-solid fa-pause" : "fa-solid fa-play";
 
@@ -48,26 +54,33 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  function syncUI() {
+    renderTrackInfo();
+    updateActiveTrack();
+  }
+
   function playTrack(index) {
     const total = tracks.length;
     const normalizedIndex = ((index % total) + total) % total;
     const selectedTrack = tracks[normalizedIndex];
 
     state.currentTrackIndex = normalizedIndex;
-    audio.src = selectedTrack.src;
+    if (audio.getAttribute("src") !== selectedTrack.src) {
+      audio.src = selectedTrack.src;
+    }
 
-    updateUI();
+    syncUI();
 
     const playPromise = audio.play();
     if (playPromise && typeof playPromise.catch === "function") {
       playPromise.catch(function () {
         state.isPlaying = false;
-        updateUI();
+        syncUI();
       });
     }
   }
 
-  function togglePlayPause() {
+  function togglePlay() {
     if (state.isPlaying) {
       audio.pause();
       return;
@@ -77,51 +90,51 @@ document.addEventListener("DOMContentLoaded", function () {
     if (playPromise && typeof playPromise.catch === "function") {
       playPromise.catch(function () {
         state.isPlaying = false;
-        updateUI();
+        syncUI();
       });
     }
   }
 
-  function playPrevTrack() {
+  function playPrev() {
     playTrack(state.currentTrackIndex - 1);
   }
 
-  function playNextTrack() {
+  function playNext() {
     playTrack(state.currentTrackIndex + 1);
   }
 
   controlPlay.addEventListener("click", function (event) {
     event.preventDefault();
-    togglePlayPause();
+    togglePlay();
   });
 
   controlPrev.addEventListener("click", function (event) {
     event.preventDefault();
-    playPrevTrack();
+    playPrev();
   });
 
   controlNext.addEventListener("click", function (event) {
     event.preventDefault();
-    playNextTrack();
+    playNext();
   });
 
   audio.addEventListener("play", function () {
     state.isPlaying = true;
-    updateUI();
+    syncUI();
   });
 
   audio.addEventListener("pause", function () {
     state.isPlaying = false;
-    updateUI();
+    syncUI();
   });
 
   audio.addEventListener("ended", function () {
-    playNextTrack();
+    playNext();
   });
 
   window.changeSound = function (num) {
     playTrack(Number(num) - 1);
   };
 
-  updateUI();
+  syncUI();
 });

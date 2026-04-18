@@ -7,9 +7,15 @@
 
   function renderAbout() {
     var root = document.getElementById("about-root");
+    var section = document.querySelector("#content .sec1");
 
-    if (!root || typeof aboutData === "undefined") {
+    if (!root || !section || typeof aboutData === "undefined") {
       return;
+    }
+
+    var sectionTitle = section.querySelector("h3");
+    if (sectionTitle) {
+      sectionTitle.textContent = aboutData.coach.sectionTitle;
     }
 
     root.innerHTML = "";
@@ -23,13 +29,7 @@
     speech.setAttribute("data-aos", "fade-right");
 
     var speechText = document.createElement("p");
-    var descriptionLines = aboutData.coach.description.slice();
-    if (descriptionLines.length > 1) {
-      descriptionLines[1] = aboutData.coach.name;
-    } else {
-      descriptionLines.push(aboutData.coach.name);
-    }
-    speechText.innerHTML = toBrText(descriptionLines);
+    speechText.innerHTML = toBrText(aboutData.coach.description);
 
     var imageWrap = document.createElement("div");
     imageWrap.setAttribute("data-aos", "fade-left");

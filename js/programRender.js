@@ -1,13 +1,8 @@
 (function () {
   "use strict";
 
-  function textWithBr(text) {
-    return String(text)
-      .split("\n")
-      .map(function (line) {
-        return line;
-      })
-      .join("<br>");
+  function linesToBr(lines) {
+    return lines.join("<br>");
   }
 
   function createProgramSection(data) {
@@ -18,12 +13,12 @@
 
     var wodItem = document.createElement("li");
     var wodTitle = document.createElement("strong");
-    wodTitle.textContent = data.wod.date + " WOD";
+    wodTitle.textContent = data.wod.date;
     var wodBreak = document.createElement("br");
     var wodName = document.createElement("span");
     wodName.textContent = data.wod.title;
     var wodDesc = document.createElement("p");
-    wodDesc.innerHTML = textWithBr(data.wod.description.join("\n")) + "<br>";
+    wodDesc.innerHTML = linesToBr(data.wod.description) + "<br>";
 
     wodItem.appendChild(wodTitle);
     wodItem.appendChild(wodBreak);
@@ -32,10 +27,10 @@
 
     var weightItem = document.createElement("li");
     var weightTitle = document.createElement("strong");
-    weightTitle.textContent = "Weightlifting";
+    weightTitle.textContent = data.weightlifting.title;
     var weightList = document.createElement("dl");
 
-    data.weightlifting.forEach(function (entry) {
+    data.weightlifting.items.forEach(function (entry) {
       var term = document.createElement("dt");
       term.textContent = entry.name;
       var detail = document.createElement("dd");
@@ -69,7 +64,7 @@
 
       var text = document.createElement("span");
       text.className = "heroTxt";
-      text.innerHTML = textWithBr(program.text) + "<br>";
+      text.innerHTML = linesToBr(program.text) + "<br>";
 
       item.appendChild(image);
       item.appendChild(text);
@@ -80,7 +75,7 @@
   }
 
   function renderProgram() {
-    var container = document.getElementById("programRenderRoot");
+    var container = document.getElementById("program-root");
 
     if (!container || typeof programData === "undefined") {
       return;
