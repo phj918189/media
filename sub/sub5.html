@@ -113,9 +113,9 @@
                     
                 </div>
             </div>
-            <div id="popup" class="popup hidden">
+            <div id="popup" class="popup hidden" aria-hidden="true">
                 <div class="popup-content">
-                    <span id="close-popup" class="close">&times;</span>
+                    <button type="button" id="close-popup" class="close" aria-label="팝업 닫기">&times;</button>
                     <div id="popup-form"></div>
                 </div>
             </div>
@@ -125,7 +125,7 @@
 
 	<footer id="footerArea">
 		<div class="topMove">
-			<div> <img src="../topbutton.png" alt=""></div>
+			<div> <img src="../topbutton.png" alt="맨 위로 이동"></div>
 		</div>
 		<div>
 			<img src="../images/footer/footer_logo.png" alt="로고">
@@ -135,9 +135,9 @@
 				
 			</div>
 			<ul>
-				<li><a href="https://www.instagram.com/crossfit_pre/"><i class="fa-brands fa-square-instagram"></i></a></li>
-				<li><a href="#"><i class="fa-brands fa-square-youtube"></i></a></li>
-				<li><a href="https://cafe.naver.com/browncav6u"><i class="fa-brands fa-square-x-twitter"></i></a></li>
+				<li><a href="https://www.instagram.com/crossfit_pre/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-square-instagram" aria-hidden="true"></i></a></li>
+				<li><a href="https://www.youtube.com/watch?v=gyadXQBCkFo" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fa-brands fa-square-youtube" aria-hidden="true"></i></a></li>
+				<li><a href="https://cafe.naver.com/browncav6u" target="_blank" rel="noopener noreferrer" aria-label="네이버 카페"><i class="fa-solid fa-mug-saucer" aria-hidden="true"></i></a></li>
 			</ul>
 		</div>	
 		
@@ -149,42 +149,9 @@
     <script src="../js/jquery-migrate-1.4.1.min.js"></script>
     <script src="../js/common.js"></script>
     <script src="../js/sub_img_back.js"></script>
-    <script src="../js/ham.js"></script>
     <script src="../js/contact_popup.js"></script>
-    <!-- <script src="./js/prefixfree.min.js"></script> -->
-    <script src="../js/imagesloaded.pkgd.js"></script>
+    <script src="../js/contactForm.js"></script>
     
     
-
-    <!-- <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=53b1d7a5418ecdc6be45e28dfed9e1d9"></script> -->
-    <!-- <script>
-        // 지도 생성 및 설정
-        var mapContainer = document.getElementById('map'); // 지도를 표시할 div 
-        var mapOption = { 
-            center: new kakao.maps.LatLng(37.520600, 126.874680), // 지도의 중심좌표 (서울 양천구 지양로5길 5)
-            level: 3 // 지도의 확대 레벨
-        };
-
-        // 지도 생성
-        var map = new kakao.maps.Map(mapContainer, mapOption); 
-
-        // 마커 생성
-        var markerPosition = new kakao.maps.LatLng(37.520600, 126.874680); // 마커가 표시될 위치
-        var marker = new kakao.maps.Marker({
-            position: markerPosition
-        });
-
-        // 지도에 마커 표시
-        marker.setMap(map);
-
-        // 인포윈도우 생성
-        var iwContent = '<div style="padding:5px; text-align:center;">초이스빌딩</div>';
-        var infowindow = new kakao.maps.InfoWindow({
-            content: iwContent
-        });
-
-        // 마커 위에 인포윈도우 표시
-        infowindow.open(map, marker);
-    </script> -->
 </body>
 </html>

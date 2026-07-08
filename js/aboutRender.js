@@ -36,7 +36,7 @@
 
     var coachImage = document.createElement("img");
     coachImage.src = aboutData.coach.image;
-    coachImage.alt = "";
+    coachImage.alt = "PRE Crossfit 코치 이영상";
     coachImage.setAttribute("data-aos", "fade-left");
 
     imageWrap.appendChild(coachImage);
@@ -52,7 +52,7 @@
 
       var image = document.createElement("img");
       image.src = licenseImage;
-      image.alt = "";
+      image.alt = "코치 자격증 " + (index + 1);
 
       item.appendChild(image);
       licenseList.appendChild(item);

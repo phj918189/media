@@ -37,7 +37,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (playerImage) {
-      playerImage.src = "./images/music/plates_" + (state.currentTrackIndex + 1) + ".png";
+      var plateNum = state.currentTrackIndex + 1;
+      playerImage.src = "./images/music/plates_" + plateNum + plateNum + ".png";
       playerImage.classList.toggle("current", state.isPlaying);
     }
   }

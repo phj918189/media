@@ -1,47 +1,38 @@
-$(document).ready(function() {
+$(document).ready(function () {
+  var value = 1;
 
+  function getPageNum() {
+    var params = new URLSearchParams(window.location.search);
+    var num = Number(params.get("num"));
 
-  var key, value;
-  
-  function getParams() {
-    var url = decodeURIComponent(location.href);
-    // url이 encodeURIComponent 로 인코딩 되었을때는 다시 디코딩 해준다.
-    url = decodeURIComponent(url);  //  'ex1.html?num=1'
+    if (num >= 1 && num <= 5) {
+      return num;
+    }
 
-    var params='';
-    params = url.substring( url.indexOf('?')+1, url.length );   
-    key = params.split("=")[0];  //'num'
-    value = params.split("=")[1];  // '1'
-    value = Number(value); //숫자로 변환  1
-  }  
-  getParams();  //함수호출
-
-  var screenSize, screenHeight;
-
-  function screen_size(){
-      screenSize = $(window).width(); //스크린의 너비
-      screenHeight = $(window).height();  //스크린의 높이
-
-      $("#content").css('margin-top',screenHeight);
-      
-      if( screenSize > 768){
-          $("#imgBG").attr('src','../images/sub'+value+'_big.jpg');
-      }else{
-          $("#imgBG").attr('src','../images/sub'+value+'_small.jpg');
-      }
+    return 1;
   }
 
-  screen_size();  //최초 실행시 호출
-  
- $(window).resize(function(){ 
-      screen_size();
-  }); 
-  
-  $('.down').click(function(e){
+  value = getPageNum();
+
+  function screenSize() {
+    var width = $(window).width();
+    var height = $(window).height();
+
+    $("#content").css("margin-top", height);
+
+    if (width > 768) {
+      $("#imgBG").attr("src", "../images/sub" + value + "_big.jpg");
+    } else {
+      $("#imgBG").attr("src", "../images/sub" + value + "_small.jpg");
+    }
+  }
+
+  screenSize();
+
+  $(window).on("resize", screenSize);
+
+  $(".down").on("click", function (e) {
     e.preventDefault();
-      screenHeight = $(window).height();
-      $('html,body').animate({'scrollTop':screenHeight}, 1000);
+    $("html, body").animate({ scrollTop: $(window).height() }, 1000);
   });
-  
-  
 });

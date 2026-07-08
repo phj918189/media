@@ -1,80 +1,104 @@
-$(window).on('scroll',function(){ //스크롤 값의 변화가 생기면
-    var scroll = $(window).scrollTop(); //스크롤의 거리
-    var win_height =$(window).height();
-    var header_height =$('header').height();
-   
-    if(scroll>win_height){ //300이상의 거리가 발생되면
-        $('.topMove').fadeIn('slow');  //top보여라~~~~
-    }else{
-        $('.topMove').fadeOut('fast');//top안보여라~~~~
+$(function () {
+  var winHeight = $(window).height();
+  var headerHeight = $("header").height();
+  var menuBreakpoint = 768;
+  var desktopNav = 1;
+
+  function updateTopButton() {
+    var scroll = $(window).scrollTop();
+    if (scroll > winHeight) {
+      $(".topMove").fadeIn("slow");
+    } else {
+      $(".topMove").fadeOut("fast");
     }
+  }
 
-    if(scroll>win_height-header_height){ //300이상의 거리가 발생되면
-        $('header').css('background','white').css('box-shadow','1px 1px 10px 1px rgba(0,0,0,.4)');  //top보여라~~~~
-    }else{
-        $('header').css('background','rgba(255,255,255,.4)').css('box-shadow','none'); //top안보여라~~~~
-    }
-});
+  function updateHeaderState() {
+    $("#headerArea").toggleClass("scrolled", $(window).scrollTop() > 40);
+  }
 
-$('.topMove').click(function(e){
-   e.preventDefault();
-    //상단으로 스르륵 이동합니다.
-   $("html,body").stop().animate({"scrollTop":0},1000); 
-});
+  function openMenu() {
+    $("body").css("overflow", "hidden");
+    $(".box").show().animate({ opacity: 1 }, 500);
+    $("#gnb").animate({ right: 0, opacity: 1 }, 500);
+  }
 
+  function closeMenu() {
+    $("body").css("overflow", "");
+    $(".box").animate({ opacity: 0 }, 500, function () {
+      $(this).hide();
+    });
+    $("#gnb").animate({ right: "-100%", opacity: 0 }, 500);
+  }
 
-$(document).ready(function() {
-
-  $(".menuOpen").click(function (e) {
-    e.preventDefault();
-    $('.box').animate({
-        opacity: 1
-    }, 500).show();
-    $("#gnb").animate({
-        right: 0,
-        opacity: 1
-    }, 500);
-});
-
-$(".close, .box").click(function (e) {
-    e.preventDefault();
-    $('.box').animate({
-        opacity: 0
-    }, 500).hide();
-    $("#gnb").animate({
-        right: '-100%',
-        opacity: 0
-    }, 500);
-});
-
-var current = 0; //1(소형테블릿이상) , 0(모바일)
-$(window).resize(function () { //웹브라우저 크기 조절시 반응하는 이벤트 메소드()
+  function resetNavForViewport() {
     var screenSize = $(window).width();
-    if (screenSize > 768) { //소형테블릿 이상
-        $("#gnb").css({
-            right: 0,
-            opacity: 1
-        });
-        //   $("#gnb").height('auto');
-        current = 1;
+
+    if (screenSize > menuBreakpoint) {
+      $("#gnb").css({ right: 0, opacity: 1 });
+      $(".box").hide().css({ opacity: 0 });
+      $("body").css("overflow", "");
+      desktopNav = 1;
+      return;
     }
-    if (current == 1 && screenSize <= 768) {
-        $("#gnb").css({
-            right: '-100%',
-            opacity: 0
-        });
-        // $("#gnb").height(documentHeight);
-        current = 0;
+
+    if (desktopNav === 1) {
+      $("#gnb").css({ right: "-100%", opacity: 0 });
+      $(".box").hide().css({ opacity: 0 });
+      $("body").css("overflow", "");
+      desktopNav = 0;
     }
-});
-});
+  }
+
+  function setActiveNavLink() {
+    var params = new URLSearchParams(window.location.search);
+    var num = params.get("num");
+    var links = $("#gnb ul li h3 a");
+
+    if (!links.length) {
+      return;
+    }
+
+    links.removeClass("active");
+
+    if (num) {
+      links.filter('[href*="num=' + num + '"]').addClass("active");
+      return;
+    }
+
+    if (/\/index\.html?$/.test(window.location.pathname) || window.location.pathname.endsWith("/")) {
+      return;
+    }
+  }
 
   $(window).on("scroll", function () {
-    if ($(window).scrollTop() > 40) {
-      $("#headerArea").addClass("scrolled");
-    } else {
-      $("#headerArea").removeClass("scrolled");
-    }
+    updateTopButton();
+    updateHeaderState();
   });
 
-  $(window).trigger("scroll");
+  $(window).on("resize", function () {
+    winHeight = $(window).height();
+    headerHeight = $("header").height();
+    resetNavForViewport();
+  });
+
+  $(".topMove").on("click", function (e) {
+    e.preventDefault();
+    $("html, body").stop().animate({ scrollTop: 0 }, 1000);
+  });
+
+  $(".menuOpen").on("click", function (e) {
+    e.preventDefault();
+    openMenu();
+  });
+
+  $(".close, .box").on("click", function (e) {
+    e.preventDefault();
+    closeMenu();
+  });
+
+  resetNavForViewport();
+  setActiveNavLink();
+  updateTopButton();
+  updateHeaderState();
+});

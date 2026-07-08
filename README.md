@@ -1,56 +1,83 @@
 # PRE Crossfit
 
-크로스핏 박스를 소개하는 반응형 정적 웹사이트 프로젝트입니다.  
-기존 HTML 하드코딩 구조를 유지한 UI 위에서, 일부 섹션을 **데이터 기반 렌더링**과 **상태 기반 인터랙션**으로 리팩토링했습니다.
+크로스핏 박스 **PRE Crossfit**을 소개하는 반응형 정적 웹사이트 포트폴리오 프로젝트입니다.  
+기존 HTML/CSS/jQuery 구조를 유지하면서, 핵심 섹션을 **데이터 기반 렌더링**과 **상태 기반 인터랙션**으로 개선했습니다.
 
-## Project Type
-- Static Website (HTML / CSS / JavaScript)
-- Responsive Web
-- jQuery + AOS 기반 기존 구조 유지
-- 신규 로직은 Vanilla JavaScript로 개선
+## Live Demo
 
-## Main Sections
-- About
-- Program
-- Multimedia
-- Membership
-- Contact
+로컬 실행:
 
-## Refactor Highlights
+```bash
+python -m http.server 8080
+```
 
-### About
-- 하드코딩된 콘텐츠를 `aboutData.js`로 분리
-- `aboutRender.js`로 DOM 렌더링 구조 적용
-- 기존 텍스트, 이미지, 클래스, AOS 애니메이션 유지
+브라우저에서 `http://localhost:8080` 접속
 
-### Program
-- WOD / Weightlifting / Program 카드 데이터를 `programData.js`로 분리
-- `programRender.js`로 반복 렌더링 구조 적용
-- 줄바꿈 데이터(`\n`)를 `<br>`로 변환해 출력
+## Tech Stack
 
-### Audio Player
-- `audio.js`를 상태 기반 구조로 리팩토링
-- `isPlaying`, `currentTrackIndex` 상태 관리
-- 재생 / 일시정지 / 이전곡 / 다음곡 / `.curr` 동기화 개선
+- HTML5 / CSS3 / Vanilla JavaScript
+- jQuery (레거시 UI 호환)
+- AOS (스크롤 애니메이션)
+- Masonry + Swiper (갤러리 / 캐러셀)
+- Magnific Popup (YouTube 모달)
 
-### Scroll Active Menu
-- 현재 섹션 위치에 따라 헤더 메뉴 active 자동 변경
-- `requestAnimationFrame` 기반 스크롤 처리
-- active 스타일 가시성 개선
+## Pages
 
-## Files
+| 페이지 | 설명 |
+|--------|------|
+| `index.html` | 메인 랜딩 (Hero, 5개 섹션, 오디오 플레이어) |
+| `sub/sub1.html` | About 상세 |
+| `sub/sub2.html` | Program 상세 (WOD, 스케줄) |
+| `sub/sub3.html` | Multimedia (YouTube, Masonry 갤러리) |
+| `sub/sub4.html` | Membership (요금, Swiper) |
+| `sub/sub5.html` | Contact (지도, 문의 폼, 팝업) |
+| `Login.html` / `Signup.html` | 인증 UI 데모 |
+
+## Portfolio Highlights
+
+### 데이터 기반 렌더링
+- About: `aboutData.js` → `aboutRender.js`
+- Program: `programData.js` → `programRender.js`
+- DOM 주입 후 AOS refresh로 애니메이션 동기화
+
+### 상태 기반 UI
+- **Audio Player** (`audio.js`): `isPlaying`, `currentTrackIndex` 상태 관리
+- **Scroll Spy** (`sectionActive.js`): `requestAnimationFrame` 기반 섹션 active 처리
+- **Contact Popup** (`contact_popup.js`): 폼 타입별 모달 + ESC 닫기
+
+### 코드 품질 개선
+- `common.js` / `ham.js` 중복 제거 → 단일 네비게이션 모듈
+- 서브 페이지 `?num=` 파라미터 검증 및 active nav 자동 표시
+- Masonry DOM 구조 수정, 접근성(alt, skip-nav focus, aria-label) 보강
+- Login/Signup 데모 페이지 브랜드 UI 적용
+
+## Project Structure
+
 ```text
-media/
-  index.html
-  css/
-    common.css
-    layout.css
-  js/
-    aboutData.js
-    aboutRender.js
-    programData.js
-    programRender.js
-    audio.js
-    sectionActive.js
-    common.js
-    ham.js
+Crossfit-WEB/
+├── index.html
+├── Login.html / Signup.html
+├── css/
+│   ├── common.css
+│   ├── layout.css
+│   ├── auth.css
+│   └── sub1~5.css
+├── js/
+│   ├── aboutData.js / aboutRender.js
+│   ├── programData.js / programRender.js
+│   ├── audio.js / sectionActive.js / video.js
+│   ├── common.js / contact_popup.js / auth.js
+│   └── galley.js / membership.js / sub_img_back.js
+├── sub/
+│   └── sub1.html ~ sub5.html
+└── images/
+```
+
+## Note
+
+- Login, Signup, Contact 팝업/폼은 **포트폴리오 데모**이며 실제 서버 전송은 없습니다.
+- Hero 영상, 음악, 외부 링크(Instagram, YouTube, Naver Cafe)는 실제 콘텐츠 기준으로 구성되어 있습니다.
+
+## Author
+
+Portfolio Project — PRE Crossfit Brand Website

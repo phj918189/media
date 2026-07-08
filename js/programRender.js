@@ -60,7 +60,7 @@
 
       var image = document.createElement("img");
       image.src = program.img;
-      image.alt = "";
+      image.alt = "Hero WOD 프로그램 " + (index + 1);
 
       var text = document.createElement("span");
       text.className = "heroTxt";

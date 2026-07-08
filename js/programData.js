@@ -1,6 +1,6 @@
 const programData = {
   wod: {
-    date: "24. 12. 10 WOD",
+    date: "26. 07. 08 WOD",
     title: "Deadlift 1RM",
     description: [
       "AMRAP 16",
